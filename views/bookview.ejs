@@ -17,19 +17,21 @@
         <div class="main_content">
             <div class="info">
                  <%- include('./partials/header.ejs'); %>
-                <h2>Sembook - Books</h2>
+                <h2>Sembook - Sem <%= book.sem %></h2>
                 <div id="contentWrapper">
                     <div>
                         <div class="form-container">
+                            <div>
+                                <a href="/books/page/edit/<%= book._id %>" class="buttonAnchor">Add a Page</a>  
+                            </div>
                             <div class="usersDiv">
-                                <ul>
-                                    <% for(let i=0; i < 8; i++) { %>
-                                        <li>
-                                            Book <%= i+1 %>
-                                            <a href="/books/view/<%= allBooks[i]._id %>"><i class="iconLink fas fa-book"></i></a>
-                                        </li>
-                                    <% } %>
-                                </ul>
+                                Total Pages - <%= book.pages.length %>
+                                <% for(let i=0; i < book.pages.length; i++) { %>
+                                    <div class="page">
+                                        <a href="/books/page/view/<%= book._id %>/<%= book.pages[i]._id %>"><i class="fas fa-file iconLink" style="float: right;"></i></a>
+                                        <%- book.pages[i].content %> %>
+                                    </div>
+                                <% } %> 
                             </div>
                         </div>
                     </div>

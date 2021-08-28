@@ -7,6 +7,7 @@ const DB = process.env.DATABASE
 require('../db/mongoose');
 
 const User = require("../models/userSchema");
+const Book = require("../models/bookSchema");
 
 const { requiredAuth, checkUser } = require("../auth/authMiddleware.js")
 const { createToken } = require('../auth/jwttoken.js')
