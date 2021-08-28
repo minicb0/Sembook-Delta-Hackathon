@@ -23,7 +23,7 @@
                     <div>
                         <div class="form-container">
                             <div>
-                                <form action="/books/page/post/<%= book._id %>" method="POST">
+                                <form action="/books/page/post/<%= currentUser._id %>/<%= book._id %>" method="POST">
                                     <textarea type="text" name="editor" id="editor" required></textarea>
                                     <button type="submit" class="buttonAnchor">Add this Page</button>
                                 </form>

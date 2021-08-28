@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit a Page</title>
+    <link rel="stylesheet" href="/public/css/sidenav.css">
+    <link rel="stylesheet" href="/public/css/pagedit.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdn.ckeditor.com/4.16.2/full/ckeditor.js"></script>
+</head>
+
+<body style="height: 100vh;">
+    <div class="wrapper">
+        <%- include('./partials/sidenav.ejs'); %>
+        <div class="main_content">
+            <div class="info">
+                 <%- include('./partials/header.ejs'); %>
+                <h2>Book - Sem <%= book.sem %> - Edit a Page</h2>
+                <div id="contentWrapper">
+                    <div>
+                        <div class="form-container">
+                            <div>
+                                <form action="/books/page/update/<%= currentUser._id %>/<%= book._id %>/page._id/" method="POST">
+                                    <textarea type="text" name="editor" id="editor" required><%- page.content %></textarea>
+                                    <button type="submit" class="buttonAnchor">Add this Page</button>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="form-container">
+                            <strong>Have Edit Access - </strong> <i class="fas fa-user-shield" style="color: rgb(3, 112, 17);"></i> <br>
+                            <strong>Give Edit Access - </strong> <i class="fas fa-user-plus" style="color: rgb(3, 112, 17); margin-right: 20px;"></i> <br>
+                            <strong>Have View Access - </strong> <i class="fas fa-user-check" style="color: blue;"></i> <br>
+                            <strong>Give View Access - </strong> <i class="fas fa-user-plus" style="color:red;"></i>
+
+                            <div class="usersDiv">
+                            <ul>
+                                <% for(let j=0; j < editUsers.length; j++) { %>
+                                    <li>
+                                        <i class="fas fa-user-shield fa-2x" style="color: rgb(3, 112, 17);"></i>
+                                        Name: <%= editUsers[j].name %> <br>
+                                        Roll No.: <%= editUsers[j].rollno %>
+                                    </li>
+                                <% } %>
+
+                                <% for(let j=0; j < viewUsers.length; j++) { %>
+                                    <li>
+                                        <i class="fas fa-user-check fa-2x" style="color: blue;"></i>
+                                        <a href="/books/page/makeadmin/<%= currentUser._id %>/<%= book._id %>/<%= page._id %>/<%= viewUsers[j]._id %>">
+                                            <i class="fas fa-user-plus fa-2x" style="color: rgb(3, 112, 17); margin-right: 20px;"></i>
+                                        </a>
+                                        Name: <%= viewUsers[j].name %> <br>
+                                        Roll No.: <%= viewUsers[j].rollno %> <br>
+                                    </li>
+                                <% } %>
+
+                                <% for(let i=0; i < noAccessUsers.length; i++) { %>
+                                    <li>
+                                        <a href="/books/page/makeview/<%= currentUser._id %>/<%= book._id %>/<%= page._id %>/<%= noAccessUsers[i]._id %>">
+                                            <i class="fas fa-user-plus fa-2x" style="color:red;"></i>
+                                        </a>
+                                        Name: <%= noAccessUsers[i].name %> <br>
+                                        Roll No.: <%= noAccessUsers[i].rollno %>
+                                    </li>
+                                <% } %>
+                            </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        CKEDITOR.replace( 'editor' );
+    </script>
+
+</body>
+
+</html>

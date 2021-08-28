@@ -12,7 +12,10 @@ const bookSchema = new mongoose.Schema({
         type: Number
     },
     pages: [{
-        content: String
+        content: String,
+        viewAccess: [mongoose.Schema.Types.ObjectId],
+        editAccess: [mongoose.Schema.Types.ObjectId],
+        noAccess: [mongoose.Schema.Types.ObjectId]
     }]
 });
 

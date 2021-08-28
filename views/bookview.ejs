@@ -28,7 +28,7 @@
                                 Total Pages - <%= book.pages.length %>
                                 <% for(let i=0; i < book.pages.length; i++) { %>
                                     <div class="page">
-                                        <a href="/books/page/view/<%= book._id %>/<%= book.pages[i]._id %>"><i class="fas fa-file iconLink" style="float: right;"></i></a>
+                                        <a href="/books/page/view/<%= currentUser._id %>/<%= book._id %>/<%= book.pages[i]._id %>"><i class="fas fa-file iconLink" style="float: right;"></i></a>
                                         <%- book.pages[i].content %> %>
                                     </div>
                                 <% } %> 

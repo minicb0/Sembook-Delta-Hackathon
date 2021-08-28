@@ -21,6 +21,9 @@
                 <div id="contentWrapper">
                     <div>
                         <div class="form-container">
+                            <% if(access == true) { %>
+                                <a href="/books/page/perms/<%= currentUser._id %>/<%= book._id %>/<%= page._id %>" class="buttonAnchor">Edit this Page</a>
+                            <% } %>
                             <div class="usersDiv">
                                 <div class="page">
                                     <%- page.content %>
